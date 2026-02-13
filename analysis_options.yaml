@@ -1,0 +1,47 @@
+# analysis_options.yaml
+
+# 1. 공식 권장 린트 규칙 포함 (가장 기본)
+include: package:flutter_lints/flutter.yaml
+
+analyzer:
+  # 2. 제외할 파일 설정 (기존 설정 유지)
+  exclude:
+    - "**/*.g.dart"
+    - "**/*.freezed.dart"
+    - "**/*.config.dart"
+    - "lib/firebase_options.dart"
+    - "test/**"
+
+  # 3. 엄격한 타입 체크 (DCM의 빈자리를 채우는 강력한 도구)
+  language:
+    strict-casts: true        # 암시적 캐스팅 금지 (안전성 Up)
+    strict-inference: true    # 타입 추론 엄격하게 (가독성 Up)
+    strict-raw-types: true    # Raw Type 금지 (List 대신 List<dynamic> 명시)
+
+  errors:
+    # 4. 규칙 위반 시 경고/에러 레벨 조정
+    invalid_annotation_target: ignore # Freezed 사용 시 필수 (가짜 에러 무시)
+
+linter:
+  rules:
+    # --- [기존 DCM 대체 및 필수 규칙] ---
+    
+    # 1. import 관련
+    - prefer_relative_imports: true # (기존 유지) 상대 경로 사용 (../model/user.dart)
+    - always_use_package_imports: false # 상대 경로를 선호하므로 이건 끔
+    - avoid_relative_lib_imports: true  # lib 폴더 밖에서 안으로 들어오는 상대 경로 금지
+
+    # 2. 코드 스타일 & 가독성
+    - prefer_single_quotes: true # (추천) 문자열은 작은 따옴표 ''
+    - avoid_print: true          # print() 금지 (Logger 사용 권장)
+    - unawaited_futures: true    # await 안 할거면 unawaited()라도 써라 (실수 방지)
+    - prefer_final_locals: true  # (강력 추천) 변수는 가능하면 final로 선언
+    - prefer_const_constructors: true # const 가능한 건 const로 (성능 최적화)
+
+    # 3. 아키텍처/구조
+    - use_build_context_synchronously: true # 비동기 함수 뒤에 context 사용 주의
+    - avoid_void_async: true # async 함수는 Future<void>여야 함 (void 금지)
+    
+    # --- [제자님이 꺼두었던 규칙들 (False로 설정했던 것들)] ---
+    # DCM에서 껐던 것들은 여기서도 굳이 켤 필요 없습니다.
+    # 예: lines_longer_than_80_chars: false (기본적으로 꺼져 있음)
