@@ -1,11 +1,12 @@
 import 'package:e_commerce_app/data/dto/common/response_wrapper/response_wrapper.dart';
 
-extension ResponseWrapperX on ResponseWrapper {
+extension ResponseWrapperX on ResponseWrapper<dynamic> {
   ResponseWrapper<T> toModel<T>(T data) {
     return ResponseWrapper<T>(
       status: status,
       code: code,
       message: message,
+      data: data,
     );
   }
 }

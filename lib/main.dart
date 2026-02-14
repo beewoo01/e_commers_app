@@ -1,17 +1,24 @@
+import 'package:e_commerce_app/core/utils/exception/common_exception.dart';
+import 'package:e_commerce_app/core/utils/logger.dart';
 import 'package:e_commerce_app/data/data_source/mock/display/display_mock_api.dart';
-import 'package:e_commerce_app/data/repository_impl/display.repository_impl.dart';
-import 'package:e_commerce_app/presentation/main/cubit/mall_type_cubit.dart';
 import 'package:flutter/material.dart';
-
 import 'core/theme/theme_data.dart';
 import 'presentation/routes/routes.dart';
+import 'service_locator.dart';
 
 void main() async {
-  print('main main main');
-  final data = await DisplayRepositoryImpl(
-    DisplayMockApi(),
-  ).getMenusBymallType(mallType: MallType.market);
-  print(data);
+  setLocator();
+
+  try {
+    final test = await DisplayMockApi().getMenusByMallType('market');
+    CustomLogger.logger.e(test);
+  } catch (error) {
+    final errorData = CommonException.setError(error);
+    CustomLogger.logger.e(
+      'errorData.code: ${errorData.code}, errorData message: ${errorData.message}, errorData.status: ${errorData.status}',
+    );
+  }
+
   runApp(const MainApp());
 }
 
