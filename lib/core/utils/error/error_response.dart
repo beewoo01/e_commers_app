@@ -4,6 +4,5 @@ class ErrorResponse {
   final String? message;
 
   ErrorResponse({this.status, this.code, this.message});
-
   
 }

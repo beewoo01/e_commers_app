@@ -26,3 +26,7 @@ void _domain() {
     DisplayUsecase(locator<DisplayRepository>()),
   );
 }
+
+void _presentation() {
+  locator.registerSingleton<MenuBloc>(instance)
+}
