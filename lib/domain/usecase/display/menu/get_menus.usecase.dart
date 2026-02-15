@@ -1,9 +1,9 @@
+import 'package:e_commerce_app/core/utils/constans.dart';
 import 'package:e_commerce_app/core/utils/error/error_response.dart';
 import 'package:e_commerce_app/data/dto/common/menu/menu.model.dart';
 import 'package:e_commerce_app/domain/model/common/result.dart';
 import 'package:e_commerce_app/domain/repository/display.repository.dart';
 import 'package:e_commerce_app/domain/usecase/base/remote.usecase.dart';
-import 'package:e_commerce_app/presentation/main/cubit/mall_type_cubit.dart';
 
 class GetMenusUsecase extends RemoteUsecase<DisplayRepository> {
   final MallType mallType;

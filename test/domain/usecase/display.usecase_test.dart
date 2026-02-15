@@ -7,7 +7,7 @@ import 'package:e_commerce_app/domain/model/common/result.dart';
 import 'package:e_commerce_app/data/dto/common/menu/menu.model.dart';
 import 'package:e_commerce_app/domain/usecase/display/menu/get_menus.usecase.dart';
 import 'package:mocktail/mocktail.dart';
-import 'package:e_commerce_app/presentation/main/cubit/mall_type_cubit.dart';
+import 'package:e_commerce_app/core/utils/constans.dart';
 import 'package:e_commerce_app/core/utils/error/error_response.dart';
 
 class MockDisplayApi extends Mock implements DisplayApi {}

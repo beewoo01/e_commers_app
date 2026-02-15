@@ -27,6 +27,6 @@ void _domain() {
   );
 }
 
-void _presentation() {
+/* void _presentation() {
   locator.registerSingleton<MenuBloc>(instance)
-}
+} */

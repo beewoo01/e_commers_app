@@ -8,7 +8,7 @@ class DisplayUsecase {
 
   DisplayUsecase(this._displayRepository);
 
-  Future<dynamic> execute<T>({required RemoteUsecase usecase}) async {
-    return await usecase(_displayRepository);
+  Future<T> execute<T>({required RemoteUsecase usecase}) async {
+    return await usecase(_displayRepository) as T;
   }
 }
