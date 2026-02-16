@@ -4,6 +4,7 @@ import 'package:e_commerce_app/data/data_source/mock/display/display_mock_data.d
 import 'package:e_commerce_app/data/data_source/remote/display.api.dart';
 import 'package:e_commerce_app/data/dto/common/response_wrapper/response_wrapper.dart';
 import 'package:e_commerce_app/data/dto/display/menu/menu.dto.dart';
+import 'package:e_commerce_app/data/dto/display/view_module/view_module.dto.dart';
 
 class DisplayMockApi implements DisplayApi {
   @override
@@ -32,5 +33,47 @@ class DisplayMockApi implements DisplayApi {
         .map((e) => MenuDto.fromJson(e as Map<String, dynamic>))
         .toList();
     return menus;
+  }
+
+  @override
+  Future<ResponseWrapper<List<ViewModuleDto>>> getViewModulesByTabId(
+    int tabId,
+  ) {
+    late String source;
+    final endOfTabId = tabId % 10;
+    switch (endOfTabId) {
+      case 1:
+        source = DisplayMockData.viewModulesByTabIdCaseOne;
+      case 2:
+        source = DisplayMockData.viewModulesByTabIdCaseTwo;
+      case 3:
+        source = DisplayMockData.viewModulesByTabIdCaseThree;
+      case 4:
+        source = DisplayMockData.viewModulesByTabIdCaseFour;
+      case 5:
+        source = DisplayMockData.viewModulesByTabIdCaseFive;
+    }
+
+    return Future(
+      () => ResponseWrapper(
+        status: 'SUCCESS',
+        code: '0000',
+        message: '',
+        data: _viewModuleParser(source),
+      ),
+    );
+  }
+
+  List<ViewModuleDto> _viewModuleParser(String source) {
+    List<ViewModuleDto> viewModules = [];
+    final dynamic decoded = jsonDecode(source);
+    if (decoded is! List) {
+      return [];
+    }
+
+    viewModules = decoded
+        .map((e) => ViewModuleDto.fromJson(e as Map<String, dynamic>))
+        .toList();
+    return viewModules;
   }
 }

@@ -1,6 +1,4 @@
-import 'package:e_commerce_app/core/utils/exception/common_exception.dart';
-import 'package:e_commerce_app/core/utils/logger.dart';
-import 'package:e_commerce_app/data/data_source/mock/display/display_mock_api.dart';
+import 'package:e_commerce_app/data/data_source/remote/display.api.dart';
 import 'package:flutter/material.dart';
 import 'core/theme/theme_data.dart';
 import 'presentation/routes/routes.dart';
@@ -9,15 +7,17 @@ import 'service_locator.dart';
 void main() async {
   setLocator();
 
-  try {
-    final test = await DisplayMockApi().getMenusByMallType('market');
-    CustomLogger.logger.e(test);
-  } catch (error) {
-    final errorData = CommonException.setError(error);
-    CustomLogger.logger.e(
-      'errorData.code: ${errorData.code}, errorData message: ${errorData.message}, errorData.status: ${errorData.status}',
-    );
-  }
+  final data = await locator<DisplayApi>().getViewModulesByTabId(10001);
+  print(data);
+  // try {
+  //   final test = await DisplayMockApi().getMenusByMallType('market');
+  //   CustomLogger.logger.e(test);
+  // } catch (error) {
+  //   final errorData = CommonException.setError(error);
+  //   CustomLogger.logger.e(
+  //     'errorData.code: ${errorData.code}, errorData message: ${errorData.message}, errorData.status: ${errorData.status}',
+  //   );
+  // }
 
   runApp(const MainApp());
 }

@@ -1,5 +1,5 @@
 import 'package:e_commerce_app/core/utils/constans.dart';
-import 'package:e_commerce_app/data/dto/common/menu/menu.model.dart';
+import 'package:e_commerce_app/domain/model/display/menu/menu.model.dart';
 import 'package:flutter/material.dart';
 
 class GlobalNavBarView extends StatelessWidget {

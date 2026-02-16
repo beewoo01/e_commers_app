@@ -4,7 +4,7 @@ import 'package:e_commerce_app/core/utils/constans.dart';
 import 'package:e_commerce_app/core/utils/error/error_response.dart';
 import 'package:e_commerce_app/core/utils/exception/common_exception.dart';
 import 'package:e_commerce_app/core/utils/logger.dart';
-import 'package:e_commerce_app/data/dto/common/menu/menu.model.dart';
+import 'package:e_commerce_app/domain/model/display/menu/menu.model.dart';
 import 'package:e_commerce_app/domain/model/common/result.dart';
 import 'package:e_commerce_app/domain/usecase/display/display.usecase.dart';
 import 'package:e_commerce_app/domain/usecase/display/menu/get_menus.usecase.dart';

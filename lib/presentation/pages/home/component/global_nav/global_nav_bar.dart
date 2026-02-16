@@ -1,7 +1,7 @@
 import 'package:e_commerce_app/core/theme/custom/custom_font_weight.dart';
 import 'package:e_commerce_app/core/theme/custom/custom_theme.dart';
 import 'package:e_commerce_app/core/utils/constans.dart';
-import 'package:e_commerce_app/data/dto/common/menu/menu.model.dart';
+import 'package:e_commerce_app/domain/model/display/menu/menu.model.dart';
 import 'package:e_commerce_app/presentation/pages/home/bloc/menu_bloc/menu_bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -32,6 +32,7 @@ class GlobalNavBar extends StatelessWidget {
               labelStyle: textScheme.titleSmall.semiBold,
               unselectedLabelStyle: textScheme.titleSmall,
               unselectedLabelColor: colorScheme.contentSecondary,
+              dividerHeight: 0,
             ),
 
             if (state.status == Status.loading)
