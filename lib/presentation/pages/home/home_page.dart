@@ -3,6 +3,7 @@ import 'package:e_commerce_app/core/utils/dialog/common_dialog.dart';
 import 'package:e_commerce_app/domain/usecase/display/display.usecase.dart';
 import 'package:e_commerce_app/presentation/main/cubit/mall_type_cubit.dart';
 import 'package:e_commerce_app/presentation/pages/home/bloc/menu_bloc/menu_bloc.dart';
+import 'package:e_commerce_app/presentation/pages/home/bloc/view_module_bloc/view_module_bloc.dart';
 import 'package:e_commerce_app/presentation/pages/home/component/global_nav/global_nav_bar.dart';
 import 'package:e_commerce_app/presentation/pages/home/component/global_nav/global_nav_bar_view.dart';
 import 'package:e_commerce_app/service_locator.dart';
@@ -41,7 +42,7 @@ class HomePageView extends StatelessWidget {
             case Status.initial:
               return Center(child: CircularProgressIndicator());
             case Status.loading:
-            return DefaultTabController(
+              return DefaultTabController(
                 key: ValueKey<MallType>(state.mallType),
                 length: state.menus.length,
                 child: Column(
