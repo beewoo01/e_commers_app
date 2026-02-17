@@ -1,12 +1,13 @@
 import 'package:e_commerce_app/core/utils/constans.dart';
 import 'package:e_commerce_app/core/utils/extensions.dart';
-import 'package:e_commerce_app/core/utils/logger.dart';
 import 'package:e_commerce_app/presentation/pages/home/bloc/view_module_bloc/view_module_bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 class ViewModuleList extends StatefulWidget {
-  const ViewModuleList({super.key});
+  final int tabId;
+
+  const ViewModuleList({super.key, required this.tabId});
 
   @override
   State<ViewModuleList> createState() => _ViewModuleListState();
@@ -44,18 +45,23 @@ class _ViewModuleListState extends State<ViewModuleList> {
 
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<ViewModuleBloc, ViewModuleState>(
-      builder: (_, state) {
-        return (state.status == Status.initial || state.viewModules.isEmpty)
-            ? Center(child: CircularProgressIndicator())
-            : ListView(
-                controller: scrollController,
-                children: [
-                  ...state.viewModules,
-                  if (state.status.isLoading) LoadingWidget(),
-                ],
-              );
-      },
+    return RefreshIndicator(
+      onRefresh: () async => context.read<ViewModuleBloc>().add(
+        ViewModuleInitialized(tabId: widget.tabId, isRefresh: true),
+      ),
+      child: BlocBuilder<ViewModuleBloc, ViewModuleState>(
+        builder: (_, state) {
+          return (state.status == Status.initial || state.viewModules.isEmpty)
+              ? Center(child: CircularProgressIndicator())
+              : ListView(
+                  controller: scrollController,
+                  children: [
+                    ...state.viewModules,
+                    if (state.status.isLoading) LoadingWidget(),
+                  ],
+                );
+        },
+      ),
     );
   }
 }

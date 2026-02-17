@@ -1,4 +1,3 @@
-
 import 'package:bloc_concurrency/bloc_concurrency.dart';
 import 'package:e_commerce_app/core/utils/constans.dart';
 import 'package:e_commerce_app/core/utils/error/error_response.dart';
@@ -41,9 +40,21 @@ class ViewModuleBloc extends Bloc<ViewModuleEvent, ViewModuleState> {
     ViewModuleInitialized event,
     Emitter<ViewModuleState> emit,
   ) async {
+    final tabId = event.tabId;
+    if (event.isRefresh) {
+      emit(
+        state.copyWith(
+          status: Status.initial,
+          currentPage: 1,
+          isEndOfPage: false,
+          viewModules: [],
+        ),
+      );
+    }
+
     emit(state.copyWith(status: Status.loading));
     await Future.delayed(Duration(seconds: 1));
-    final tabId = event.tabId;
+
     try {
       final response = await _fetch(tabId: tabId);
       response.when(
