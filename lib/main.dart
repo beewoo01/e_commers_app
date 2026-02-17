@@ -7,8 +7,8 @@ import 'service_locator.dart';
 void main() async {
   setLocator();
 
-  final data = await locator<DisplayApi>().getViewModulesByTabId(10001);
-  print(data);
+  //final data = await locator<DisplayApi>().getViewModulesByTabId(10001);
+  //print(data);
   // try {
   //   final test = await DisplayMockApi().getMenusByMallType('market');
   //   CustomLogger.logger.e(test);

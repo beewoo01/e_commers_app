@@ -3,7 +3,6 @@ import 'package:e_commerce_app/core/utils/dialog/common_dialog.dart';
 import 'package:e_commerce_app/domain/usecase/display/display.usecase.dart';
 import 'package:e_commerce_app/presentation/main/cubit/mall_type_cubit.dart';
 import 'package:e_commerce_app/presentation/pages/home/bloc/menu_bloc/menu_bloc.dart';
-import 'package:e_commerce_app/presentation/pages/home/bloc/view_module_bloc/view_module_bloc.dart';
 import 'package:e_commerce_app/presentation/pages/home/component/global_nav/global_nav_bar.dart';
 import 'package:e_commerce_app/presentation/pages/home/component/global_nav/global_nav_bar_view.dart';
 import 'package:e_commerce_app/service_locator.dart';
@@ -19,7 +18,7 @@ class HomePage extends StatelessWidget {
       builder: (_, state) {
         return BlocProvider(
           create: (_) =>
-              MenuBloc(locator<DisplayUsecase>())..add(MenuInitialized(state)),
+              locator<MenuBloc>()..add(MenuInitialized(state)),
           child: HomePageView(),
         );
       },

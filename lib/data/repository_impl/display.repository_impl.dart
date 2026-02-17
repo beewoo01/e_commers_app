@@ -25,8 +25,9 @@ class DisplayRepositoryImpl implements DisplayRepository {
   @override
   Future<ResponseWrapper<List<ViewModule>>> getViewModuleByTabId({
     required int tabId,
+    required int page,
   }) async {
-    final response = await _displayApi.getViewModulesByTabId(tabId);
+    final response = await _displayApi.getViewModulesByTabId(tabId, page);
     return response.toModel<List<ViewModule>>(
       response.data?.map((dto) => dto.toModel()).toList() ?? [],
     );
