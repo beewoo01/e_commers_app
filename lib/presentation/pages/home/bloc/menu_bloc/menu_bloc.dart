@@ -10,6 +10,7 @@ import 'package:e_commerce_app/domain/usecase/display/display.usecase.dart';
 import 'package:e_commerce_app/domain/usecase/display/menu/get_menus.usecase.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:injectable/injectable.dart';
 
 part 'menu_event.dart';
 
@@ -17,6 +18,7 @@ part 'menu_state.dart';
 
 part 'menu_bloc.freezed.dart';
 
+@injectable
 class MenuBloc extends Bloc<MenuEvent, MenuState> {
   final DisplayUsecase _displayUsecase;
 

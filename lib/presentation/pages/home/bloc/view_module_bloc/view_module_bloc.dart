@@ -12,6 +12,7 @@ import 'package:e_commerce_app/presentation/pages/home/component/view_module_lis
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:injectable/injectable.dart';
 import 'package:stream_transform/stream_transform.dart';
 
 part 'view_module_event.dart';
@@ -24,6 +25,7 @@ EventTransformer<E> _throttleDroppable<E>(Duration duration) {
   };
 }
 
+@injectable
 class ViewModuleBloc extends Bloc<ViewModuleEvent, ViewModuleState> {
   final DisplayUsecase _displayUsecase;
 

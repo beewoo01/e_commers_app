@@ -6,7 +6,9 @@ import 'package:e_commerce_app/data/mapper/common_mapper.dart';
 import 'package:e_commerce_app/data/mapper/display.mapper.dart';
 import 'package:e_commerce_app/domain/model/display/view_module/view_module.dart';
 import 'package:e_commerce_app/domain/repository/display.repository.dart';
+import 'package:injectable/injectable.dart';
 
+@Singleton(as: DisplayRepository)
 class DisplayRepositoryImpl implements DisplayRepository {
   final DisplayApi _displayApi;
 
