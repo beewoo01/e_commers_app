@@ -1,4 +1,3 @@
-import 'package:e_commerce_app/data/data_source/remote/display.api.dart';
 import 'package:e_commerce_app/dependency_injection.dart';
 import 'package:flutter/material.dart';
 import 'core/theme/theme_data.dart';

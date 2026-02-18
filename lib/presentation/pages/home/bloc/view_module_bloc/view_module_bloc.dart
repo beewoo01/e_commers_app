@@ -7,7 +7,7 @@ import 'package:e_commerce_app/domain/model/common/result.dart';
 import 'package:e_commerce_app/domain/model/display/display.model.dart';
 import 'package:e_commerce_app/domain/usecase/display/display.usecase.dart';
 import 'package:e_commerce_app/domain/usecase/display/view_module/get_view_modules.usecase.dart';
-import 'package:e_commerce_app/presentation/pages/home/component/view_module_list/view_module_factory/view_module_factory.dart';
+import 'package:e_commerce_app/presentation/pages/home/component/view_module_list/factory/view_module_factory.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
@@ -41,6 +41,7 @@ class ViewModuleBloc extends Bloc<ViewModuleEvent, ViewModuleState> {
     Emitter<ViewModuleState> emit,
   ) async {
     final tabId = event.tabId;
+    CustomLogger.logger.e('_onViewModuleInitialized');
     if (event.isRefresh) {
       emit(
         state.copyWith(
@@ -54,11 +55,12 @@ class ViewModuleBloc extends Bloc<ViewModuleEvent, ViewModuleState> {
 
     emit(state.copyWith(status: Status.loading));
     await Future.delayed(Duration(seconds: 1));
-
+    CustomLogger.logger.e('_onViewModuleInitialized');
     try {
       final response = await _fetch(tabId: tabId);
       response.when(
         success: (data) {
+          CustomLogger.logger.e('_onViewModuleInitialized data is ${data}');
           ViewModuleFactory viewModuleFactory = ViewModuleFactory();
           final List<Widget> viewModules = data
               .map((e) => viewModuleFactory.textToWidget(e))
@@ -112,6 +114,7 @@ class ViewModuleBloc extends Bloc<ViewModuleEvent, ViewModuleState> {
       final response = await _fetch(tabId: tabId, page: nextPage);
       response.when(
         success: (data) {
+          CustomLogger.logger.e("[test] data is ${data}");
           if (data.isEmpty) {
             emit(
               state.copyWith(
@@ -123,7 +126,6 @@ class ViewModuleBloc extends Bloc<ViewModuleEvent, ViewModuleState> {
 
             return;
           }
-
           final List<Widget> viewModules = [...state.viewModules];
 
           ViewModuleFactory viewModuleFactory = ViewModuleFactory();

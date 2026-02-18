@@ -1,15 +1,29 @@
 import 'package:e_commerce_app/core/utils/extensions.dart';
 import 'package:e_commerce_app/domain/model/display/display.model.dart';
+import 'package:e_commerce_app/presentation/pages/home/component/view_module_list/banner.view_module.dart';
+import 'package:e_commerce_app/presentation/pages/home/component/view_module_list/carousel.view_module.dart';
+import 'package:e_commerce_app/presentation/pages/home/component/view_module_list/scroll.view_module.dart';
+import 'package:e_commerce_app/presentation/pages/home/component/view_module_list/special_price.view_module.dart';
 import 'package:e_commerce_app/presentation/pages/home/component/view_module_list/view_module_A.dart';
 import 'package:e_commerce_app/presentation/pages/home/component/view_module_list/view_module_B.dart';
 import 'package:e_commerce_app/presentation/pages/home/component/view_module_list/view_module_C.dart';
 import 'package:e_commerce_app/presentation/pages/home/component/view_module_list/view_module_D.dart';
 import 'package:e_commerce_app/presentation/pages/home/component/view_module_list/view_module_E.dart';
 import 'package:e_commerce_app/presentation/pages/home/component/view_module_list/view_module_NONE.dart';
-import 'package:e_commerce_app/presentation/pages/home/component/view_module_list/view_module_factory/view_module_widget.dart';
+import 'package:e_commerce_app/presentation/pages/home/component/view_module_list/factory/view_module_widget.dart';
 import 'package:flutter/material.dart';
 
-enum Modules { viewModuleA, viewModuleB, viewModuleC, viewModuleD, viewModuleE }
+enum Modules {
+  viewModuleA,
+  viewModuleB,
+  viewModuleC,
+  viewModuleD,
+  viewModuleE,
+  carouselViewModule,
+  bannerViewModule,
+  scrollViewModule,
+  specialPriceViewModule,
+}
 
 class ViewModuleFactory {
   Widget textToWidget(ViewModule viewModule) {
@@ -17,7 +31,7 @@ class ViewModuleFactory {
     for (final module in Modules.values) {
       final String name = module.name.toSnakeCase();
       if (name.contains(type)) {
-        return module.toWidget() as Widget;
+        return module.toWidget(viewModule) as Widget;
       }
     }
 
@@ -26,7 +40,7 @@ class ViewModuleFactory {
 }
 
 extension ModulesX on Modules {
-  ViewModuleWidget toWidget() {
+  ViewModuleWidget toWidget(ViewModule info) {
     switch (this) {
       case Modules.viewModuleA:
         return const ViewModuleA();
@@ -38,6 +52,14 @@ extension ModulesX on Modules {
         return const ViewModuleD();
       case Modules.viewModuleE:
         return const ViewModuleE();
+      case Modules.carouselViewModule:
+        return CarouselViewModule(info: info);
+      case Modules.bannerViewModule:
+        return BannerViewModule(info: info);
+      case Modules.scrollViewModule:
+        return ScrollViewModule(info: info);
+      case Modules.specialPriceViewModule:
+        return SpecialPriceViewModule(info: info);
     }
   }
 }
