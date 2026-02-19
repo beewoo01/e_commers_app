@@ -1,7 +1,9 @@
 import 'package:e_commerce_app/core/utils/extensions.dart';
 import 'package:e_commerce_app/domain/model/display/display.model.dart';
 import 'package:e_commerce_app/presentation/pages/home/component/view_module_list/banner.view_module.dart';
+import 'package:e_commerce_app/presentation/pages/home/component/view_module_list/brand_product.view_module.dart';
 import 'package:e_commerce_app/presentation/pages/home/component/view_module_list/carousel.view_module.dart';
+import 'package:e_commerce_app/presentation/pages/home/component/view_module_list/category_product.view_module.dart';
 import 'package:e_commerce_app/presentation/pages/home/component/view_module_list/scroll.view_module.dart';
 import 'package:e_commerce_app/presentation/pages/home/component/view_module_list/special_price.view_module.dart';
 import 'package:e_commerce_app/presentation/pages/home/component/view_module_list/view_module_A.dart';
@@ -23,6 +25,8 @@ enum Modules {
   bannerViewModule,
   scrollViewModule,
   specialPriceViewModule,
+  categoryProductViewModule,
+  brandProductViewModule,
 }
 
 class ViewModuleFactory {
@@ -60,6 +64,10 @@ extension ModulesX on Modules {
         return ScrollViewModule(info: info);
       case Modules.specialPriceViewModule:
         return SpecialPriceViewModule(info: info);
+      case Modules.categoryProductViewModule:
+        return CategoryProductViewModule(info: info);
+      case Modules.brandProductViewModule:
+        return BrandProductViewModule(info: info);
     }
   }
 }

@@ -41,7 +41,6 @@ class ViewModuleBloc extends Bloc<ViewModuleEvent, ViewModuleState> {
     Emitter<ViewModuleState> emit,
   ) async {
     final tabId = event.tabId;
-    CustomLogger.logger.e('_onViewModuleInitialized');
     if (event.isRefresh) {
       emit(
         state.copyWith(
@@ -55,12 +54,10 @@ class ViewModuleBloc extends Bloc<ViewModuleEvent, ViewModuleState> {
 
     emit(state.copyWith(status: Status.loading));
     await Future.delayed(Duration(seconds: 1));
-    CustomLogger.logger.e('_onViewModuleInitialized');
     try {
       final response = await _fetch(tabId: tabId);
       response.when(
         success: (data) {
-          CustomLogger.logger.e('_onViewModuleInitialized data is ${data}');
           ViewModuleFactory viewModuleFactory = ViewModuleFactory();
           final List<Widget> viewModules = data
               .map((e) => viewModuleFactory.textToWidget(e))

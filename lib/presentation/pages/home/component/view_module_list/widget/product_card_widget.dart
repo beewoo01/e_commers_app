@@ -43,7 +43,7 @@ class ProductCardWidget extends StatelessWidget {
         SizedBox(height: 9),
         Text(
           productInfo.title,
-          style: titleStyle?.titleCopywith(),
+          style: titleStyle?.titleCopyWith(),
           overflow: TextOverflow.ellipsis,
           maxLines: 2,
         ),
@@ -52,16 +52,16 @@ class ProductCardWidget extends StatelessWidget {
           children: [
             Text(
               '${productInfo.discountRate.toString()}%',
-              style: priceStyle?.discountRateCopywith(),
+              style: priceStyle?.discountRateCopyWith(),
             ),
             const SizedBox(width: 4),
-            Text(productInfo.price.toWon(), style: priceStyle?.priceCopywith()),
+            Text(productInfo.price.toWon(), style: priceStyle?.priceCopyWith()),
           ],
         ),
         SizedBox(height: 2),
         Text(
           productInfo.originalPrice.toWon(),
-          style: priceStyle?.orifinalPriceCopywith(),
+          style: priceStyle?.originalPriceCopyWith(),
         ),
         SizedBox(height: 8),
         if (needShowReviewCount)
@@ -81,7 +81,7 @@ class ProductCardWidget extends StatelessWidget {
                 SizedBox(width: 4),
                 Text(
                   '후기 ${productInfo.reviewCount.toReview()}',
-                  style: reviewStyle?.reviewCountCopywith(),
+                  style: reviewStyle?.reviewCountCopyWith(),
                 ),
               ],
             ),

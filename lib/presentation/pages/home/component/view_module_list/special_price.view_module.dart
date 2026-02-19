@@ -68,7 +68,7 @@ class SpecialPriceViewModule extends StatelessWidget with ViewModuleWidget {
 
 class _SpecialPriceProduct extends StatelessWidget {
   final ProductInfo productInfo;
-  const _SpecialPriceProduct({super.key, required this.productInfo});
+  const _SpecialPriceProduct({required this.productInfo});
 
   @override
   Widget build(BuildContext context) {
@@ -95,7 +95,7 @@ class _SpecialPriceProduct extends StatelessWidget {
         ),
         Text(
           productInfo.title,
-          style: textTheme.titleMedium?.titleCopywith(),
+          style: textTheme.titleMedium?.titleCopyWith(),
           overflow: TextOverflow.ellipsis,
           maxLines: 1,
         ),
@@ -104,17 +104,17 @@ class _SpecialPriceProduct extends StatelessWidget {
           children: [
             Text(
               '${productInfo.discountRate.toString()}%',
-              style: textTheme.titleLarge?.discountRateCopywith(),
+              style: textTheme.titleLarge?.discountRateCopyWith(),
             ),
             const SizedBox(width: 4),
             Text(
               productInfo.price.toWon(),
-              style: textTheme.titleLarge?.priceCopywith(),
+              style: textTheme.titleLarge?.priceCopyWith(),
             ),
             SizedBox(height: 4),
             Text(
               productInfo.originalPrice.toWon(),
-              style: textTheme.titleSmall?.orifinalPriceCopywith(),
+              style: textTheme.titleSmall?.originalPriceCopyWith(),
             ),
           ],
         ),
@@ -133,7 +133,7 @@ class _SpecialPriceProduct extends StatelessWidget {
             SizedBox(width: 4),
             Text(
               '후기 ${productInfo.reviewCount.toReview()}',
-              style: textTheme.labelMedium?.reviewCountCopywith(),
+              style: textTheme.labelMedium?.reviewCountCopyWith(),
             ),
           ],
         ),

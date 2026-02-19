@@ -15,7 +15,7 @@ T _$identity<T>(T value) => value;
 /// @nodoc
 mixin _$ViewModuleDto implements DiagnosticableTreeMixin {
 
- String? get type; String? get title; String? get subTitle; String? get imageUrl; int? get time; List<ProductInfoDto>? get products;
+ String? get type; String? get title; String? get subTitle; String? get imageUrl; int? get time; List<ProductInfoDto>? get products; List<String>? get tabs;
 /// Create a copy of ViewModuleDto
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -29,21 +29,21 @@ $ViewModuleDtoCopyWith<ViewModuleDto> get copyWith => _$ViewModuleDtoCopyWithImp
 void debugFillProperties(DiagnosticPropertiesBuilder properties) {
   properties
     ..add(DiagnosticsProperty('type', 'ViewModuleDto'))
-    ..add(DiagnosticsProperty('type', type))..add(DiagnosticsProperty('title', title))..add(DiagnosticsProperty('subTitle', subTitle))..add(DiagnosticsProperty('imageUrl', imageUrl))..add(DiagnosticsProperty('time', time))..add(DiagnosticsProperty('products', products));
+    ..add(DiagnosticsProperty('type', type))..add(DiagnosticsProperty('title', title))..add(DiagnosticsProperty('subTitle', subTitle))..add(DiagnosticsProperty('imageUrl', imageUrl))..add(DiagnosticsProperty('time', time))..add(DiagnosticsProperty('products', products))..add(DiagnosticsProperty('tabs', tabs));
 }
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is ViewModuleDto&&(identical(other.type, type) || other.type == type)&&(identical(other.title, title) || other.title == title)&&(identical(other.subTitle, subTitle) || other.subTitle == subTitle)&&(identical(other.imageUrl, imageUrl) || other.imageUrl == imageUrl)&&(identical(other.time, time) || other.time == time)&&const DeepCollectionEquality().equals(other.products, products));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is ViewModuleDto&&(identical(other.type, type) || other.type == type)&&(identical(other.title, title) || other.title == title)&&(identical(other.subTitle, subTitle) || other.subTitle == subTitle)&&(identical(other.imageUrl, imageUrl) || other.imageUrl == imageUrl)&&(identical(other.time, time) || other.time == time)&&const DeepCollectionEquality().equals(other.products, products)&&const DeepCollectionEquality().equals(other.tabs, tabs));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,type,title,subTitle,imageUrl,time,const DeepCollectionEquality().hash(products));
+int get hashCode => Object.hash(runtimeType,type,title,subTitle,imageUrl,time,const DeepCollectionEquality().hash(products),const DeepCollectionEquality().hash(tabs));
 
 @override
 String toString({ DiagnosticLevel minLevel = DiagnosticLevel.info }) {
-  return 'ViewModuleDto(type: $type, title: $title, subTitle: $subTitle, imageUrl: $imageUrl, time: $time, products: $products)';
+  return 'ViewModuleDto(type: $type, title: $title, subTitle: $subTitle, imageUrl: $imageUrl, time: $time, products: $products, tabs: $tabs)';
 }
 
 
@@ -54,7 +54,7 @@ abstract mixin class $ViewModuleDtoCopyWith<$Res>  {
   factory $ViewModuleDtoCopyWith(ViewModuleDto value, $Res Function(ViewModuleDto) _then) = _$ViewModuleDtoCopyWithImpl;
 @useResult
 $Res call({
- String? type, String? title, String? subTitle, String? imageUrl, int? time, List<ProductInfoDto>? products
+ String? type, String? title, String? subTitle, String? imageUrl, int? time, List<ProductInfoDto>? products, List<String>? tabs
 });
 
 
@@ -71,7 +71,7 @@ class _$ViewModuleDtoCopyWithImpl<$Res>
 
 /// Create a copy of ViewModuleDto
 /// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') @override $Res call({Object? type = freezed,Object? title = freezed,Object? subTitle = freezed,Object? imageUrl = freezed,Object? time = freezed,Object? products = freezed,}) {
+@pragma('vm:prefer-inline') @override $Res call({Object? type = freezed,Object? title = freezed,Object? subTitle = freezed,Object? imageUrl = freezed,Object? time = freezed,Object? products = freezed,Object? tabs = freezed,}) {
   return _then(_self.copyWith(
 type: freezed == type ? _self.type : type // ignore: cast_nullable_to_non_nullable
 as String?,title: freezed == title ? _self.title : title // ignore: cast_nullable_to_non_nullable
@@ -79,7 +79,8 @@ as String?,subTitle: freezed == subTitle ? _self.subTitle : subTitle // ignore: 
 as String?,imageUrl: freezed == imageUrl ? _self.imageUrl : imageUrl // ignore: cast_nullable_to_non_nullable
 as String?,time: freezed == time ? _self.time : time // ignore: cast_nullable_to_non_nullable
 as int?,products: freezed == products ? _self.products : products // ignore: cast_nullable_to_non_nullable
-as List<ProductInfoDto>?,
+as List<ProductInfoDto>?,tabs: freezed == tabs ? _self.tabs : tabs // ignore: cast_nullable_to_non_nullable
+as List<String>?,
   ));
 }
 
@@ -164,10 +165,10 @@ return $default(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( String? type,  String? title,  String? subTitle,  String? imageUrl,  int? time,  List<ProductInfoDto>? products)?  $default,{required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( String? type,  String? title,  String? subTitle,  String? imageUrl,  int? time,  List<ProductInfoDto>? products,  List<String>? tabs)?  $default,{required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case _ViewModuleDto() when $default != null:
-return $default(_that.type,_that.title,_that.subTitle,_that.imageUrl,_that.time,_that.products);case _:
+return $default(_that.type,_that.title,_that.subTitle,_that.imageUrl,_that.time,_that.products,_that.tabs);case _:
   return orElse();
 
 }
@@ -185,10 +186,10 @@ return $default(_that.type,_that.title,_that.subTitle,_that.imageUrl,_that.time,
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( String? type,  String? title,  String? subTitle,  String? imageUrl,  int? time,  List<ProductInfoDto>? products)  $default,) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( String? type,  String? title,  String? subTitle,  String? imageUrl,  int? time,  List<ProductInfoDto>? products,  List<String>? tabs)  $default,) {final _that = this;
 switch (_that) {
 case _ViewModuleDto():
-return $default(_that.type,_that.title,_that.subTitle,_that.imageUrl,_that.time,_that.products);case _:
+return $default(_that.type,_that.title,_that.subTitle,_that.imageUrl,_that.time,_that.products,_that.tabs);case _:
   throw StateError('Unexpected subclass');
 
 }
@@ -205,10 +206,10 @@ return $default(_that.type,_that.title,_that.subTitle,_that.imageUrl,_that.time,
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( String? type,  String? title,  String? subTitle,  String? imageUrl,  int? time,  List<ProductInfoDto>? products)?  $default,) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( String? type,  String? title,  String? subTitle,  String? imageUrl,  int? time,  List<ProductInfoDto>? products,  List<String>? tabs)?  $default,) {final _that = this;
 switch (_that) {
 case _ViewModuleDto() when $default != null:
-return $default(_that.type,_that.title,_that.subTitle,_that.imageUrl,_that.time,_that.products);case _:
+return $default(_that.type,_that.title,_that.subTitle,_that.imageUrl,_that.time,_that.products,_that.tabs);case _:
   return null;
 
 }
@@ -220,7 +221,7 @@ return $default(_that.type,_that.title,_that.subTitle,_that.imageUrl,_that.time,
 @JsonSerializable()
 
 class _ViewModuleDto with DiagnosticableTreeMixin implements ViewModuleDto {
-  const _ViewModuleDto({this.type = '', this.title = '', this.subTitle = '', this.imageUrl = '', this.time = -1, final  List<ProductInfoDto>? products = const <ProductInfoDto>[]}): _products = products;
+  const _ViewModuleDto({this.type = '', this.title = '', this.subTitle = '', this.imageUrl = '', this.time = -1, final  List<ProductInfoDto>? products = const <ProductInfoDto>[], final  List<String>? tabs = const []}): _products = products,_tabs = tabs;
   factory _ViewModuleDto.fromJson(Map<String, dynamic> json) => _$ViewModuleDtoFromJson(json);
 
 @override@JsonKey() final  String? type;
@@ -233,6 +234,15 @@ class _ViewModuleDto with DiagnosticableTreeMixin implements ViewModuleDto {
   final value = _products;
   if (value == null) return null;
   if (_products is EqualUnmodifiableListView) return _products;
+  // ignore: implicit_dynamic_type
+  return EqualUnmodifiableListView(value);
+}
+
+ final  List<String>? _tabs;
+@override@JsonKey() List<String>? get tabs {
+  final value = _tabs;
+  if (value == null) return null;
+  if (_tabs is EqualUnmodifiableListView) return _tabs;
   // ignore: implicit_dynamic_type
   return EqualUnmodifiableListView(value);
 }
@@ -252,21 +262,21 @@ Map<String, dynamic> toJson() {
 void debugFillProperties(DiagnosticPropertiesBuilder properties) {
   properties
     ..add(DiagnosticsProperty('type', 'ViewModuleDto'))
-    ..add(DiagnosticsProperty('type', type))..add(DiagnosticsProperty('title', title))..add(DiagnosticsProperty('subTitle', subTitle))..add(DiagnosticsProperty('imageUrl', imageUrl))..add(DiagnosticsProperty('time', time))..add(DiagnosticsProperty('products', products));
+    ..add(DiagnosticsProperty('type', type))..add(DiagnosticsProperty('title', title))..add(DiagnosticsProperty('subTitle', subTitle))..add(DiagnosticsProperty('imageUrl', imageUrl))..add(DiagnosticsProperty('time', time))..add(DiagnosticsProperty('products', products))..add(DiagnosticsProperty('tabs', tabs));
 }
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _ViewModuleDto&&(identical(other.type, type) || other.type == type)&&(identical(other.title, title) || other.title == title)&&(identical(other.subTitle, subTitle) || other.subTitle == subTitle)&&(identical(other.imageUrl, imageUrl) || other.imageUrl == imageUrl)&&(identical(other.time, time) || other.time == time)&&const DeepCollectionEquality().equals(other._products, _products));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _ViewModuleDto&&(identical(other.type, type) || other.type == type)&&(identical(other.title, title) || other.title == title)&&(identical(other.subTitle, subTitle) || other.subTitle == subTitle)&&(identical(other.imageUrl, imageUrl) || other.imageUrl == imageUrl)&&(identical(other.time, time) || other.time == time)&&const DeepCollectionEquality().equals(other._products, _products)&&const DeepCollectionEquality().equals(other._tabs, _tabs));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,type,title,subTitle,imageUrl,time,const DeepCollectionEquality().hash(_products));
+int get hashCode => Object.hash(runtimeType,type,title,subTitle,imageUrl,time,const DeepCollectionEquality().hash(_products),const DeepCollectionEquality().hash(_tabs));
 
 @override
 String toString({ DiagnosticLevel minLevel = DiagnosticLevel.info }) {
-  return 'ViewModuleDto(type: $type, title: $title, subTitle: $subTitle, imageUrl: $imageUrl, time: $time, products: $products)';
+  return 'ViewModuleDto(type: $type, title: $title, subTitle: $subTitle, imageUrl: $imageUrl, time: $time, products: $products, tabs: $tabs)';
 }
 
 
@@ -277,7 +287,7 @@ abstract mixin class _$ViewModuleDtoCopyWith<$Res> implements $ViewModuleDtoCopy
   factory _$ViewModuleDtoCopyWith(_ViewModuleDto value, $Res Function(_ViewModuleDto) _then) = __$ViewModuleDtoCopyWithImpl;
 @override @useResult
 $Res call({
- String? type, String? title, String? subTitle, String? imageUrl, int? time, List<ProductInfoDto>? products
+ String? type, String? title, String? subTitle, String? imageUrl, int? time, List<ProductInfoDto>? products, List<String>? tabs
 });
 
 
@@ -294,7 +304,7 @@ class __$ViewModuleDtoCopyWithImpl<$Res>
 
 /// Create a copy of ViewModuleDto
 /// with the given fields replaced by the non-null parameter values.
-@override @pragma('vm:prefer-inline') $Res call({Object? type = freezed,Object? title = freezed,Object? subTitle = freezed,Object? imageUrl = freezed,Object? time = freezed,Object? products = freezed,}) {
+@override @pragma('vm:prefer-inline') $Res call({Object? type = freezed,Object? title = freezed,Object? subTitle = freezed,Object? imageUrl = freezed,Object? time = freezed,Object? products = freezed,Object? tabs = freezed,}) {
   return _then(_ViewModuleDto(
 type: freezed == type ? _self.type : type // ignore: cast_nullable_to_non_nullable
 as String?,title: freezed == title ? _self.title : title // ignore: cast_nullable_to_non_nullable
@@ -302,7 +312,8 @@ as String?,subTitle: freezed == subTitle ? _self.subTitle : subTitle // ignore: 
 as String?,imageUrl: freezed == imageUrl ? _self.imageUrl : imageUrl // ignore: cast_nullable_to_non_nullable
 as String?,time: freezed == time ? _self.time : time // ignore: cast_nullable_to_non_nullable
 as int?,products: freezed == products ? _self._products : products // ignore: cast_nullable_to_non_nullable
-as List<ProductInfoDto>?,
+as List<ProductInfoDto>?,tabs: freezed == tabs ? _self._tabs : tabs // ignore: cast_nullable_to_non_nullable
+as List<String>?,
   ));
 }
 

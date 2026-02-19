@@ -34,34 +34,26 @@ extension IntEx on int {
 }
 
 extension TextStyleEx on TextStyle {
-  TextStyle? titleCopywith() {
-    return copyWith(
-      color: CustomTheme.colorScheme.contentPrimary
-    ).regular;
+  TextStyle? titleCopyWith() {
+    return copyWith(color: CustomTheme.colorScheme.contentPrimary).regular;
   }
 
-  TextStyle? discountRateCopywith() {
-    return copyWith(
-      color: CustomTheme.colorScheme.secondary
-    ).bold;
+  TextStyle? discountRateCopyWith() {
+    return copyWith(color: CustomTheme.colorScheme.secondary).bold;
   }
 
-  TextStyle? priceCopywith() {
-    return copyWith(
-      color: CustomTheme.colorScheme.contentPrimary
-    ).bold;
+  TextStyle? priceCopyWith() {
+    return copyWith(color: CustomTheme.colorScheme.contentPrimary).bold;
   }
 
-  TextStyle? orifinalPriceCopywith() {
+  TextStyle? originalPriceCopyWith() {
     return copyWith(
       color: CustomTheme.colorScheme.contentFourth,
-      decoration: TextDecoration.lineThrough
+      decoration: TextDecoration.lineThrough,
     ).regular;
   }
 
-  TextStyle? reviewCountCopywith() {
-    return copyWith(
-      color: CustomTheme.colorScheme.contentTertiary,
-    ).regular;
+  TextStyle? reviewCountCopyWith() {
+    return copyWith(color: CustomTheme.colorScheme.contentTertiary).regular;
   }
 }
