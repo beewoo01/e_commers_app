@@ -1,3 +1,5 @@
+import 'package:e_commerce_app/core/utils/bottom_sheet/cart_bottom_sheet.dart';
+import 'package:e_commerce_app/presentation/main/bloc/cart_bloc/cart_bloc.dart';
 import 'package:e_commerce_app/presentation/main/cubit/mall_type_cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -34,19 +36,27 @@ class MainScreenView extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: const TopAppBar(),
-      body: BlocBuilder<BottomNavCubit, BottomNav>(
-        builder: (_, state) {
-          switch (state) {
-            case BottomNav.home:
-              return const HomePage();
-            case BottomNav.category:
-              return const CategoryPage();
-            case BottomNav.search:
-              return const SearchPage();
-            case BottomNav.user:
-              return const UserPage();
-          }
+      body: BlocListener<CartBloc, CartState>(
+        listener: (contex, state) {
+          cartBottomSheet(
+            context,
+          ).whenComplete(() => context.read<CartBloc>().add(CartClosed()));
         },
+        listenWhen: (prev, cur) => prev.status.isClose && cur.status.isOpen,
+        child: BlocBuilder<BottomNavCubit, BottomNav>(
+          builder: (_, state) {
+            switch (state) {
+              case BottomNav.home:
+                return const HomePage();
+              case BottomNav.category:
+                return const CategoryPage();
+              case BottomNav.search:
+                return const SearchPage();
+              case BottomNav.user:
+                return const UserPage();
+            }
+          },
+        ),
       ),
       bottomNavigationBar: BlocBuilder<BottomNavCubit, BottomNav>(
         builder: (_, state) {

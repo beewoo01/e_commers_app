@@ -25,6 +25,7 @@ class HomeAppBar extends StatelessWidget {
                 icon: AppIcons.mainLogo,
                 color: state.theme.logoColor,
                 padding: 8,
+                onPressed: null,
               ),
               title: FittedBox(
                 fit: BoxFit.scaleDown,
@@ -72,10 +73,12 @@ class HomeAppBar extends StatelessWidget {
                 SvgIconButton(
                   icon: AppIcons.location,
                   color: state.theme.iconColor,
+                  onPressed: null,
                 ),
                 SvgIconButton(
                   icon: AppIcons.cart,
                   color: state.theme.iconColor,
+                  onPressed: null,
                 ),
               ],
               backgroundColor: Colors.transparent,
