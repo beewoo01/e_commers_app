@@ -11,6 +11,8 @@
 // ignore_for_file: no_leading_underscores_for_library_prefixes
 import 'package:e_commerce_app/data/data_source/data_source_module.dart'
     as _i988;
+import 'package:e_commerce_app/data/data_source/local_storage/display.dao.dart'
+    as _i109;
 import 'package:e_commerce_app/data/data_source/remote/display.api.dart'
     as _i649;
 import 'package:e_commerce_app/data/repository_impl/display.repository_impl.dart'
@@ -38,8 +40,12 @@ extension GetItInjectableX on _i174.GetIt {
     final datSourceModule = _$DatSourceModule();
     gh.factory<_i992.CartBloc>(() => _i992.CartBloc());
     gh.singleton<_i649.DisplayApi>(() => datSourceModule.displayApi);
+    gh.singleton<_i109.DisplayDao>(() => datSourceModule.displayDao);
     gh.singleton<_i455.DisplayRepository>(
-      () => _i644.DisplayRepositoryImpl(gh<_i649.DisplayApi>()),
+      () => _i644.DisplayRepositoryImpl(
+        gh<_i649.DisplayApi>(),
+        gh<_i109.DisplayDao>(),
+      ),
     );
     gh.singleton<_i757.DisplayUsecase>(
       () => _i757.DisplayUsecase(gh<_i455.DisplayRepository>()),
