@@ -1,5 +1,4 @@
 import 'package:e_commerce_app/core/theme/custom/custom_font_weight.dart';
-import 'package:e_commerce_app/core/theme/custom/custom_theme.dart';
 import 'package:e_commerce_app/core/utils/extensions.dart';
 import 'package:flutter/material.dart';
 

@@ -6,7 +6,13 @@ class ViewModuleNONE extends StatelessWidget with ViewModuleWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
+    return SizedBox(
       height: 200, child: Center(child: Text('ViewModuleNONE')));
   }
 }
+
+
+
+
+
+

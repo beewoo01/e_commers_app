@@ -78,7 +78,7 @@ class DisplayDao {
     int quantity,
   ) async {
     final localStorage = await Hive.openBox<CartEntity>(_cartDb);
-    final currentCart = await localStorage.get(productId);
+    final currentCart = localStorage.get(productId);
 
     if (currentCart == null) {
       final status = '장바구니 객체가 존재하지 않습니다.';

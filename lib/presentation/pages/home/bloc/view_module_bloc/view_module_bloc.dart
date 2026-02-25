@@ -111,7 +111,7 @@ class ViewModuleBloc extends Bloc<ViewModuleEvent, ViewModuleState> {
       final response = await _fetch(tabId: tabId, page: nextPage);
       response.when(
         success: (data) {
-          CustomLogger.logger.e("[test] data is ${data}");
+          CustomLogger.logger.e("[test] data is $data");
           if (data.isEmpty) {
             emit(
               state.copyWith(

@@ -23,6 +23,8 @@ import 'package:e_commerce_app/domain/usecase/display/display.usecase.dart'
     as _i757;
 import 'package:e_commerce_app/presentation/main/bloc/cart_bloc/cart_bloc.dart'
     as _i992;
+import 'package:e_commerce_app/presentation/pages/cart_list/bloc/cart_list_bloc/cart_list_bloc.dart'
+    as _i689;
 import 'package:e_commerce_app/presentation/pages/home/bloc/menu_bloc/menu_bloc.dart'
     as _i918;
 import 'package:e_commerce_app/presentation/pages/home/bloc/view_module_bloc/view_module_bloc.dart'
@@ -49,6 +51,9 @@ extension GetItInjectableX on _i174.GetIt {
     );
     gh.singleton<_i757.DisplayUsecase>(
       () => _i757.DisplayUsecase(gh<_i455.DisplayRepository>()),
+    );
+    gh.factory<_i689.CartListBloc>(
+      () => _i689.CartListBloc(gh<_i757.DisplayUsecase>()),
     );
     gh.factory<_i918.MenuBloc>(
       () => _i918.MenuBloc(gh<_i757.DisplayUsecase>()),

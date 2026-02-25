@@ -4,12 +4,11 @@ import 'package:e_commerce_app/domain/model/common/result.dart';
 import 'package:e_commerce_app/domain/repository/display.repository.dart';
 import 'package:e_commerce_app/domain/usecase/base/local.usecase.dart';
 
-class ChangeCartQtyUsecase
-    extends LocalUsecase<DisplayRepository> {
+class ChangeCartQtyUsecase extends LocalUsecase<DisplayRepository> {
   final String productId;
   final int quantity;
 
-  ChangeCartQtyUsecase(this.productId, this.quantity);
+  ChangeCartQtyUsecase({required this.productId, required this.quantity});
 
   @override
   Future<dynamic> call(DisplayRepository repository) async {

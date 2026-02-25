@@ -1,7 +1,6 @@
 import 'package:e_commerce_app/core/utils/constans.dart';
 import 'package:e_commerce_app/core/utils/extensions.dart';
 import 'package:e_commerce_app/presentation/pages/home/bloc/view_module_bloc/view_module_bloc.dart';
-import 'package:e_commerce_app/presentation/pages/home/component/footer/footer.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 

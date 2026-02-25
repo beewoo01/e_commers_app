@@ -2,6 +2,7 @@ import 'package:e_commerce_app/data/entity/cart/cart.entity.dart';
 import 'package:e_commerce_app/data/entity/product_info/product_info.entity.dart';
 import 'package:e_commerce_app/dependency_injection.dart';
 import 'package:e_commerce_app/presentation/main/bloc/cart_bloc/cart_bloc.dart';
+import 'package:e_commerce_app/presentation/pages/cart_list/bloc/cart_list_bloc/cart_list_bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:hive_ce_flutter/hive_flutter.dart';
@@ -11,7 +12,7 @@ import 'presentation/routes/routes.dart';
 void main() async {
   //hive 초기화
   await Hive.initFlutter();
-  
+
   Hive.registerAdapter(ProductInfoEntityAdapter());
   Hive.registerAdapter(CartEntityAdapter());
   configureDependencies();
@@ -26,6 +27,10 @@ class MainApp extends StatelessWidget {
     return MultiBlocProvider(
       providers: [
         BlocProvider(create: (_) => getIt<CartBloc>()..add(CartInitialized())),
+        BlocProvider(
+          lazy: false,
+          create: (_) => getIt<CartListBloc>()..add(CartListInitialized()),
+        ),
       ],
       child: MaterialApp.router(
         routerConfig: router,

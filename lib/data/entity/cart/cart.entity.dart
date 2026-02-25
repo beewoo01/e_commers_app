@@ -4,7 +4,7 @@ import 'package:hive_ce_flutter/hive_ce_flutter.dart';
 part 'cart.entity.g.dart';
 
 @HiveType(typeId: 1)
-class CartEntity {
+class CartEntity extends HiveObject {
   @HiveField(0)
   ProductInfoEntity product;
 
@@ -13,4 +13,3 @@ class CartEntity {
 
   CartEntity({required this.product, required this.quantity});
 }
-ㅇ

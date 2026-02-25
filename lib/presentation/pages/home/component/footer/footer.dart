@@ -37,7 +37,7 @@ class Footer extends StatelessWidget {
                 Row(
                   children: [
                     _GreyInfo('주식회사 패캠마켓'),
-                    Container(
+                    SizedBox(
                       height: 10,
                       child: VerticalDivider(
                         color: colorScheme.contentTertiary,
