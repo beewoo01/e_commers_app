@@ -1,3 +1,4 @@
+import 'package:e_commerce_app/presentation/pages/cart_list/cart_list_page.dart';
 import 'package:go_router/go_router.dart';
 
 import '../main/main_screen.dart';
@@ -15,6 +16,11 @@ final GoRouter router = GoRouter(
       path: RoutePath.main,
       name: 'main',
       builder: (context, state) => const MainScreen(),
+    ),
+    GoRoute(
+      path: RoutePath.cart_list,
+      name: 'cart_list',
+      builder: (context, state) => const CartListPage(),
     ),
   ],
   initialLocation: '/splash',

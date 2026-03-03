@@ -123,7 +123,7 @@ class CartListBloc extends Bloc<CartListEvent, CartListState> {
     Emitter<CartListState> emit,
   ) async {
     try {} catch (error) {
-      CustomLogger.logger.e('${error.toString()}');
+      CustomLogger.logger.e(error.toString());
       emit(
         state.copyWith(
           status: Status.error,
@@ -156,7 +156,7 @@ class CartListBloc extends Bloc<CartListEvent, CartListState> {
         ),
       );
     } catch (error) {
-      CustomLogger.logger.e('${error.toString()}');
+      CustomLogger.logger.e(error.toString());
       emit(
         state.copyWith(
           status: Status.error,
@@ -166,7 +166,7 @@ class CartListBloc extends Bloc<CartListEvent, CartListState> {
     }
   }
 
-  void _onCartSelectedAll(
+  void  _onCartSelectedAll(
     CartListSelectedAll event,
     Emitter<CartListState> emit,
   ) {
@@ -189,7 +189,7 @@ class CartListBloc extends Bloc<CartListEvent, CartListState> {
         ),
       );
     } catch (error) {
-      CustomLogger.logger.e('${error.toString()}');
+      CustomLogger.logger.e(error.toString());
       emit(
         state.copyWith(
           status: Status.error,
@@ -204,7 +204,7 @@ class CartListBloc extends Bloc<CartListEvent, CartListState> {
     Emitter<CartListState> emit,
   ) async {
     try {} catch (error) {
-      CustomLogger.logger.e('${error.toString()}');
+      CustomLogger.logger.e(error.toString());
       emit(
         state.copyWith(
           status: Status.error,
@@ -245,7 +245,7 @@ class CartListBloc extends Bloc<CartListEvent, CartListState> {
         },
       );
     } catch (error) {
-      CustomLogger.logger.e('${error.toString()}');
+      CustomLogger.logger.e(error.toString());
       emit(
         state.copyWith(
           status: Status.error,

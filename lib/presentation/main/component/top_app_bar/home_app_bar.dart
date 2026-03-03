@@ -3,8 +3,10 @@ import 'package:e_commerce_app/core/theme/custom/custom_font_weight.dart';
 import 'package:e_commerce_app/core/utils/constans.dart';
 import 'package:e_commerce_app/presentation/main/component/top_app_bar/widgets/svg_icon_button.dart';
 import 'package:e_commerce_app/presentation/main/cubit/mall_type_cubit.dart';
+import 'package:e_commerce_app/presentation/routes/route_path.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:go_router/go_router.dart';
 
 import '../../../../core/theme/constant/app_icons.dart';
 
@@ -78,7 +80,7 @@ class HomeAppBar extends StatelessWidget {
                 SvgIconButton(
                   icon: AppIcons.cart,
                   color: state.theme.iconColor,
-                  onPressed: null,
+                  onPressed: () => context.push(RoutePath.cart_list),
                 ),
               ],
               backgroundColor: Colors.transparent,
