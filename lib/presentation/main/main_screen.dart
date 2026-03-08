@@ -37,10 +37,18 @@ class MainScreenView extends StatelessWidget {
     return Scaffold(
       appBar: const TopAppBar(),
       body: BlocListener<CartBloc, CartState>(
-        listener: (contex, state) {
+        listener: (contex, state) async {
           cartBottomSheet(
             context,
           ).whenComplete(() => context.read<CartBloc>().add(CartClosed()));
+
+          final bottomSheet = await cartBottomSheet(
+            context,
+          ).whenComplete(() => context.read<CartBloc>().add(CartClosed()));
+
+          final bool isSccess = bottomSheet ?? false;
+
+          
         },
         listenWhen: (prev, cur) => prev.status.isClose && cur.status.isOpen,
         child: BlocBuilder<BottomNavCubit, BottomNav>(

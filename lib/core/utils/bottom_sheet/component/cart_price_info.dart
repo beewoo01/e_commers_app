@@ -20,14 +20,7 @@ const double _iconSize = 16;
 const double _iconPadding = 8;
 
 class CartPriceInfo extends StatelessWidget {
-  final ProductInfo productInfo;
-  final int quantity;
-
-  const CartPriceInfo({
-    super.key,
-    required this.productInfo,
-    required this.quantity,
-  });
+  const CartPriceInfo({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -38,6 +31,9 @@ class CartPriceInfo extends StatelessWidget {
         context.read<CartBloc>().add(CartQuantityIncreased());
     void _qtyDecreased() =>
         context.read<CartBloc>().add(CartQuantityDecreased()); */
+
+    final productInfo = context.watch<CartBloc>().state.productInfo;
+    final quantity = context.watch<CartBloc>().state.quantity;
 
     final textTheme = Theme.of(context).textTheme;
     final colorScheme = Theme.of(context).colorScheme;

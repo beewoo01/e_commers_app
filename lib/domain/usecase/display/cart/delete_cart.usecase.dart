@@ -7,7 +7,7 @@ import 'package:e_commerce_app/domain/usecase/base/local.usecase.dart';
 class DeleteCartUsecase extends LocalUsecase<DisplayRepository> {
   final List<String> productIds;
 
-  DeleteCartUsecase(this.productIds);
+  DeleteCartUsecase({required this.productIds});
 
   @override
   Future<dynamic> call(DisplayRepository repository) async {

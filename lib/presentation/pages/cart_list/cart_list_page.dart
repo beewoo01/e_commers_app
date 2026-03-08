@@ -4,10 +4,12 @@ import 'package:e_commerce_app/core/theme/custom/custom_theme.dart';
 import 'package:e_commerce_app/core/utils/constans.dart';
 import 'package:e_commerce_app/presentation/main/component/top_app_bar/widgets/svg_icon_button.dart';
 import 'package:e_commerce_app/presentation/pages/cart_list/bloc/cart_list_bloc/cart_list_bloc.dart';
+import 'package:e_commerce_app/presentation/pages/cart_list/component/cart_product_card.dart';
+import 'package:e_commerce_app/presentation/pages/cart_list/component/cart_total_price.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 import 'package:go_router/go_router.dart';
+import 'package:logger/logger.dart';
 
 class CartListPage extends StatelessWidget {
   const CartListPage({super.key});
@@ -52,38 +54,52 @@ class CartListPageView extends StatelessWidget {
           preferredSize: Size.fromHeight(48),
           child: Padding(
             padding: const EdgeInsets.symmetric(horizontal: 16),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Row(
+            child: BlocBuilder<CartListBloc, CartListState>(
+              builder: (_, state) {
+                final bool isSelectedAll =
+                    state.selectedProduct.length == state.cartList.length &&
+                    state.cartList.isNotEmpty;
+
+                return Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    SvgIconButton(
-                      icon: AppIcons.checkMarkCircle,
-                      color: colorScheme.contentFourth,
-                      //TODO 전체 선택
-                      onPressed: null,
-                    ),
-            
-                    const SizedBox(width: 8),
-                    BlocBuilder<CartListBloc, CartListState>(
-                      builder: (_, state) {
-                        return Text(
+                    Row(
+                      children: [
+                        SvgIconButton(
+                          icon: (isSelectedAll)
+                              ? AppIcons.checkMarkCircleFill
+                              : AppIcons.checkMarkCircle,
+                          color: (isSelectedAll)
+                              ? colorScheme.primary
+                              : colorScheme.contentFourth,
+                          onPressed: () => context.read<CartListBloc>().add(
+                            CartListSelectedAll(),
+                          ),
+                        ),
+
+                        const SizedBox(width: 8),
+                        Text(
                           '전체 선택 (${state.selectedProduct.length}/${state.cartList.length})',
                           style: textTheme.titleSmall?.copyWith(
                             color: colorScheme.contentPrimary,
                           ),
-                        );
-                      },
+                        ),
+                      ],
+                    ),
+                    GestureDetector(
+                      onTap: () => context.read<CartListBloc>().add(
+                        CartListDeleted(productIds: state.selectedProduct),
+                      ),
+                      child: Text(
+                        '선택 삭제',
+                        style: textTheme.titleSmall.semiBold?.copyWith(
+                          color: colorScheme.contentSecondary,
+                        ),
+                      ),
                     ),
                   ],
-                ),
-                Text(
-                  '전체선택',
-                  style: textTheme.titleSmall.semiBold?.copyWith(
-                    color: colorScheme.contentSecondary,
-                  ),
-                ),
-              ],
+                );
+              },
             ),
           ),
         ),
@@ -98,7 +114,18 @@ class CartListPageView extends StatelessWidget {
             case Status.error:
               return const Center(child: CircularProgressIndicator());
             case Status.success:
-              return ListView();
+              return ListView(
+                children: [
+                  Divider(height: 8, thickness: 8, color: colorScheme.surface),
+                  Column(
+                    children: List.generate(
+                      state.cartList.length,
+                      (index) => CartProductCard(cart: state.cartList[index]),
+                    ),
+                  ),
+                  CartTotalPrice(isEmpty: state.cartList.isEmpty),
+                ],
+              );
           }
         },
       ),

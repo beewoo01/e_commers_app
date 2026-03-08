@@ -3,6 +3,7 @@ import 'package:e_commerce_app/core/theme/custom/custom_font_weight.dart';
 import 'package:e_commerce_app/core/utils/constans.dart';
 import 'package:e_commerce_app/presentation/main/component/top_app_bar/widgets/svg_icon_button.dart';
 import 'package:e_commerce_app/presentation/main/cubit/mall_type_cubit.dart';
+import 'package:e_commerce_app/presentation/pages/cart_list/bloc/cart_list_bloc/cart_list_bloc.dart';
 import 'package:e_commerce_app/presentation/routes/route_path.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -81,6 +82,20 @@ class HomeAppBar extends StatelessWidget {
                   icon: AppIcons.cart,
                   color: state.theme.iconColor,
                   onPressed: () => context.push(RoutePath.cart_list),
+                ),
+                Positioned(
+                  top: 2,
+                  right: 0,
+                  child: Container(
+                    decoration: BoxDecoration(shape: BoxShape.circle, color: state.theme.badgeBgColor),
+                    child: Center(
+                      child: Text('${context.watch<CartListBloc>().state.cartList.length}', style: TextStyle(
+                        color: state.theme.badgeNumColor,
+                        fontSize: 9,fontFamily: 'Pretendard',
+                        fontWeight: FontWeight.w600
+                      ),)
+                    ),
+                  ),
                 ),
               ],
               backgroundColor: Colors.transparent,

@@ -7,6 +7,7 @@ import 'package:e_commerce_app/domain/model/display/cart/cart.model.dart';
 import 'package:e_commerce_app/domain/model/display/product_info/product_info.model.dart';
 import 'package:e_commerce_app/domain/usecase/display/cart/add_cart_list.usecase.dart';
 import 'package:e_commerce_app/domain/usecase/display/cart/change_cart_qty.usecase.dart';
+import 'package:e_commerce_app/domain/usecase/display/cart/delete_cart.usecase.dart';
 import 'package:e_commerce_app/domain/usecase/display/cart/get_cart_list.usecase.dart';
 import 'package:e_commerce_app/domain/usecase/display/display.usecase.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -122,7 +123,32 @@ class CartListBloc extends Bloc<CartListEvent, CartListState> {
     CartListDeleted event,
     Emitter<CartListState> emit,
   ) async {
-    try {} catch (error) {
+    try {
+      final response = await _displayUsecase.execute<Result<List<Cart>?>>(
+        usecase: DeleteCartUsecase(productIds: event.productIds),
+      );
+
+      response.when(
+        success: (data) {
+          final result = data ?? [];
+          final List<Cart> cartList = [...result];
+          final selectedProducts = cartList
+              .map((e) => e.product.productId)
+              .toList();
+          final totalPrice = _calTotalPrice(selectedProducts, cartList);
+          emit(
+            state.copyWith(
+              cartList: cartList,
+              selectedProduct: selectedProducts,
+              totalPrice: totalPrice,
+            ),
+          );
+        },
+        failure: (error) {
+          emit(state.copyWith(status: Status.error, error: error));
+        },
+      );
+    } catch (error) {
       CustomLogger.logger.e(error.toString());
       emit(
         state.copyWith(
@@ -166,7 +192,7 @@ class CartListBloc extends Bloc<CartListEvent, CartListState> {
     }
   }
 
-  void  _onCartSelectedAll(
+  void _onCartSelectedAll(
     CartListSelectedAll event,
     Emitter<CartListState> emit,
   ) {
