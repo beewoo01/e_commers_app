@@ -8,7 +8,6 @@ import 'package:e_commerce_app/presentation/main/component/top_app_bar/widgets/s
 import 'package:e_commerce_app/presentation/pages/cart_list/bloc/cart_list_bloc/cart_list_bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 
 const double _imageHeight = 78;
 
@@ -27,15 +26,8 @@ class CartProductCard extends StatelessWidget {
     final productId = cart.product.productId;
 
     final isSelected = context.select(
-      (CartListBloc bloc) => bloc.state.selectedProduct,
+      (CartListBloc bloc) => bloc.state.selectedProduct.contains(productId),
     );
-
-    // final productId = cart.product.productId;
-
-    // final bloc = context.read<CartListBloc>();
-    // final isSelected = context.select(
-    //   (CartListBloc bloc) => bloc.state.selectedProduct.contains(productId),
-    // );
 
     return Padding(
       padding: const EdgeInsets.only(left: 16, top: 20, right: 16),
@@ -43,11 +35,16 @@ class CartProductCard extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           SvgIconButton(
-            icon: AppIcons.checkMarkCircle,
-            color: colorScheme.primary,
+            icon: (isSelected)
+                ? AppIcons.checkMarkCircleFill
+                : AppIcons.checkMarkCircle,
+            color: (isSelected)
+                ? colorScheme.primary
+                : colorScheme.contentFourth,
             onPressed: () =>
                 context.read<CartListBloc>().add(CartListSelected(cart: cart)),
           ),
+
           const SizedBox(width: 8),
           Expanded(
             child: Column(

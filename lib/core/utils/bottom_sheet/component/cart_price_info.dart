@@ -1,5 +1,4 @@
 import 'package:e_commerce_app/core/theme/constant/app_icons.dart';
-import 'package:e_commerce_app/domain/model/display/product_info/product_info.model.dart';
 import 'package:e_commerce_app/presentation/main/bloc/cart_bloc/cart_bloc.dart';
 import 'package:e_commerce_app/presentation/main/component/top_app_bar/widgets/svg_icon_button.dart';
 import 'package:flutter/material.dart';
@@ -15,7 +14,7 @@ const double _counterHeight = 36;
 // 96
 const double _counterWidth = 96;
 
-const double _iconSize = 16;
+// const double _iconSize = 16;
 
 const double _iconPadding = 8;
 

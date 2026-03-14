@@ -1,5 +1,4 @@
 import 'package:e_commerce_app/core/theme/custom/custom_theme.dart';
-import 'package:e_commerce_app/domain/model/display/product_info/product_info.model.dart';
 import 'package:e_commerce_app/presentation/main/bloc/cart_bloc/cart_bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
