@@ -47,8 +47,6 @@ class MainScreenView extends StatelessWidget {
           ).whenComplete(() => context.read<CartBloc>().add(CartClosed()));
 
           final bool isSccess = bottomSheet ?? false;
-
-          
         },
         listenWhen: (prev, cur) => prev.status.isClose && cur.status.isOpen,
         child: BlocBuilder<BottomNavCubit, BottomNav>(
